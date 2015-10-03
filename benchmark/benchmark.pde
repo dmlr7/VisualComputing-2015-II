@@ -22,6 +22,7 @@ void setup(){
 }
 void draw(){
     drawSuzanne();
+    println(frameRate);
 }
 
 void drawSuzanne(){
