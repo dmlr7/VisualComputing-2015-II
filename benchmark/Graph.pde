@@ -64,7 +64,6 @@ class Graph {
   
   private void drawCoordinates(float uh, float lh) {
     stroke(255, 0, 0);
-    float dh = lh - uh;
     for(int i = 1; i < piv; ++i)
       line(x[i - 1], y[i - 1], x[i], y[i]);
   }
@@ -72,4 +71,5 @@ class Graph {
   public float calculatePosition(float h, float maxP, float val) {
     return (h * val) / maxP;
   }
+  
 }

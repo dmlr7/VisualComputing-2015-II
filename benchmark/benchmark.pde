@@ -17,12 +17,13 @@ Graph graph;
 void setup(){
   size(640, 420, renderer);
   graph = new Graph(height - graphHeight, graphHeight, 400);
-   /*scene = new Scene(this);
-   if(scene.is3D()) scene.setCameraType(Camera.Type.ORTHOGRAPHIC);
-   scene.setRadius(200);
-   scene.showAll();*/
-   background(0);
+  /*scene = new Scene(this);
+  if(scene.is3D()) scene.setCameraType(Camera.Type.ORTHOGRAPHIC);
+  scene.setRadius(200);
+  scene.showAll();*/
+  background(0);
 }
+
 void draw(){
   drawSuzanne();
   graph.addValue(frameRate);
