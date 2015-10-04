@@ -1,7 +1,7 @@
-import remixlab.bias.branch.*;
+//import remixlab.bias.branch.*;
 import remixlab.bias.core.*;
 import remixlab.bias.event.*;
-import remixlab.dandelion.branch.*;
+//import remixlab.dandelion.branch.*;
 import remixlab.dandelion.constraint.*;
 import remixlab.dandelion.core.*;
 import remixlab.dandelion.geom.*;
@@ -11,18 +11,23 @@ import remixlab.util.*;
 String renderer = P3D;
 Scene scene;
 
+float graphHeight = 60;
+Graph graph;
+
 void setup(){
-  size(640, 360, renderer);
-   scene = new Scene(this);
+  size(640, 420, renderer);
+  graph = new Graph(height - graphHeight, graphHeight, 400);
+   /*scene = new Scene(this);
    if(scene.is3D()) scene.setCameraType(Camera.Type.ORTHOGRAPHIC);
    scene.setRadius(200);
-   scene.showAll();
-  background(0);
-   
+   scene.showAll();*/
+   background(0);
 }
 void draw(){
-    drawSuzanne();
-    println(frameRate);
+  drawSuzanne();
+  graph.addValue(frameRate);
+  graph.drawGraph();
+  println(frameRate);
 }
 
 void drawSuzanne(){

@@ -1,6 +1,6 @@
 class Graph {
   protected int piv;
-  protected float maxVal, iy, h;
+  protected float maxVal, minVal, iy, h;
   protected float[] values;
   
   protected float[] x;
@@ -20,23 +20,28 @@ class Graph {
   public void init() {
     piv = 0;
     maxVal = 0;
+    minVal = 1000;
   }
   
-  public void addYCoordinate(float val) {
+  public void addValue(float val) {
     if(piv == values.length)
       init();
     if(val > maxVal) {
       maxVal = val;
       calculateYValues();
     }
-    y[piv] = iy + h - 10 - calculatePosition(h - 15, maxVal, val);
+    if(val < minVal) {
+      minVal = val;
+      calculateYValues();
+    }
+    y[piv] = iy + h - 10 - calculatePosition(h - 15, maxVal - minVal, val - minVal);
     values[piv++] = val;
   }
   
   protected void calculateYValues() {
-    float lh = iy + h - 10;
+    float lh = iy + h - 10, mx = maxVal - minVal;
     for(int i = 0; i < piv; ++i)
-      y[i] = lh - calculatePosition(h - 15, maxVal, values[i]);
+      y[i] = lh - calculatePosition(h - 15, mx, values[i] - minVal);
   }
   
   public void drawGraph() {
@@ -47,6 +52,7 @@ class Graph {
   
   private void drawGraphBackground() {
     stroke(0);
+    fill(0);
     rect(0, iy, width, h);
   }
   
