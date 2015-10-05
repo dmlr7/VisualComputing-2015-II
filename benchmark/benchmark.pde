@@ -8,7 +8,9 @@ import remixlab.dandelion.geom.*;
 import remixlab.fpstiming.*;
 import remixlab.proscene.*;
 import remixlab.util.*;
+
 String renderer = P3D;
+PGraphics canvas;
 Scene scene;
 
 float graphHeight = 60;
@@ -16,15 +18,22 @@ Graph graph;
 
 void setup(){
   size(640, 420, renderer);
+  canvas = createGraphics(640, 360, renderer);
   graph = new Graph(height - graphHeight, graphHeight, 400);
-  /*scene = new Scene(this);
+  scene = new Scene(this, canvas);
   if(scene.is3D()) scene.setCameraType(Camera.Type.ORTHOGRAPHIC);
   scene.setRadius(200);
-  scene.showAll();*/
-  background(0);
+  scene.showAll();
 }
 
 void draw(){
+  background(0);
+  canvas.beginDraw();
+  scene.beginDraw();
+  canvas.background(0);
+  scene.endDraw();
+  canvas.endDraw();
+  image(canvas, 0, 0);
   drawSuzanne();
   graph.addValue(frameRate);
   graph.drawGraph();
