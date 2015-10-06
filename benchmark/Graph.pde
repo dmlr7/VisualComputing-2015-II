@@ -10,7 +10,7 @@ class Graph {
     values = new float[n];
     x = new float[n];
     for(int i = 0; i < n; ++i)
-      x[i] = 10 + calculatePosition(width - 15, values.length, i);
+      x[i] = 45 + calculatePosition(width - 15, values.length, i);
     y = new float[n];
     this.iy = iy;
     this.h = h;
@@ -48,6 +48,9 @@ class Graph {
     drawGraphBackground();
     drawCoordinateBars();
     drawCoordinates(iy + 5, iy + h - 10);
+    drawNumber(maxVal, 20, iy);
+    drawNumber(minVal, 20, iy + h - 15);
+    drawNumber(values[piv - 1], 20, iy + (h / 2) - 5);
   }
   
   private void drawGraphBackground() {
@@ -58,8 +61,8 @@ class Graph {
   
   private void drawCoordinateBars() {
     stroke(255);
-    line(10, iy + 5, 10, iy + h - 5);
-    line(5, iy + h - 10, width - 5, iy + h - 10);
+    line(45, iy + 5, 45, iy + h - 5);
+    line(40, iy + h - 10, width - 5, iy + h - 10);
   }
   
   private void drawCoordinates(float uh, float lh) {
@@ -70,6 +73,14 @@ class Graph {
   
   public float calculatePosition(float h, float maxP, float val) {
     return (h * val) / maxP;
+  }
+  
+  public void drawNumber(float number, float x, float y) {
+    textSize(10);
+    fill(0,255,255);
+    stroke(0);
+    textAlign(CENTER, TOP);
+    text(String.format("%.3f", number), x, y);
   }
   
 }

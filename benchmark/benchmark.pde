@@ -13,7 +13,7 @@ String renderer = P3D;
 PGraphics canvas;
 Scene scene;
 // Graph Variables
-float graphHeight = 60;
+float graphHeight = 80;
 Graph graph;
 // Screw Variables
 Screw screw;
@@ -44,7 +44,6 @@ void draw(){
   graph.addValue(frameRate);
   graph.drawGraph();
   scene.eye().playPath(path);
-  println(frameRate);
 }
 
 void drawProsceneSample() {
