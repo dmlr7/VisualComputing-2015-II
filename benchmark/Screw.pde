@@ -21,25 +21,28 @@ class Screw {
   
   public void paintVertex(PGraphics pg, ArrayList<Point> points, float h) {
     drawBase(pg, points, 0);
-    for(int i = 0; i < sides; ++i)
-      drawEdge(pg, points.get(i), points.get((i + 1) % sides), h);
+    drawEdge(pg, points, h);
     drawBase(pg, points, h);
   }
   
   public void drawBase(PGraphics pg, ArrayList<Point> points, float h) {
     pg.beginShape();
-    for(int i = 0; i < sides; ++i)
-      pg.vertex(points.get(i).x, points.get(i).y, points.get(i).z + h);
+    for(Point p: points)
+      pg.vertex(p.x, p.y, p.z + h);
     pg.endShape();
   }
   
-  public void drawEdge(PGraphics pg, Point a, Point b, float h) {
-    pg.beginShape();
-    pg.vertex(a.x, a.y, a.z);
-    pg.vertex(b.x, b.y, b.z);
-    pg.vertex(b.x, b.y, b.z + h);
-    pg.vertex(a.x, a.y, a.z + h);
+  public void drawEdge(PGraphics pg, ArrayList<Point> points, float h) {
+    pg.beginShape(TRIANGLE_STRIP);
+    for(Point point: points)
+      addBottomAndTopVertex(pg, point, h);
+    addBottomAndTopVertex(pg, points.get(0), h);
     pg.endShape();
+  }
+  
+  private void addBottomAndTopVertex(PGraphics pg, Point point, float h) {
+    pg.vertex(point.x, point.y, point.z);
+    pg.vertex(point.x, point.y, point.z + h);
   }
   
 }
