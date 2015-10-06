@@ -12,13 +12,17 @@ import remixlab.util.*;
 String renderer = P3D;
 PGraphics canvas;
 Scene scene;
-
+// Graph Variables
 float graphHeight = 60;
 Graph graph;
-
+// Screw Variables
 Screw screw;
 int sides = 8;
 float r = 20, h = 10;
+// Snail Path Variables
+SnailPath spath;
+int views = 50;
+int path = 1;
 
 void setup(){
   size(840, 620, renderer);
@@ -29,6 +33,9 @@ void setup(){
   scene.setRadius(200);
   scene.showAll();
   screw = new Screw(sides);
+  spath = new SnailPath(views, path);
+  spath.createPath(scene, 150, 150, -10);
+  spath.createPath(scene, 150, -150, 10);
 }
 
 void draw(){
@@ -36,6 +43,7 @@ void draw(){
   drawProsceneSample();
   graph.addValue(frameRate);
   graph.drawGraph();
+  scene.eye().playPath(path);
   println(frameRate);
 }
 
