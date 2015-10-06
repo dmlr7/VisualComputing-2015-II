@@ -43,7 +43,10 @@ void drawProsceneSample() {
   canvas.beginDraw();
   scene.beginDraw();
   canvas.background(0);
-  screw.draw(scene.pg(), new Point(0, 0, 0), r, h);
+  for(float x = -100; x < 100; x += 3 * r)
+    for(float y = -100; y < 100; y += 3 * r)
+      for(float z = -100; z < 100; z += 2 * h)
+        screw.draw(scene.pg(), new Point(x, y, z), r, h);
   scene.endDraw();
   canvas.endDraw();
   image(canvas, 0, 0);
