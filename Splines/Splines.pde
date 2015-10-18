@@ -31,9 +31,10 @@ void draw() {
   background(0);
   for (int i = 0; i < points.size(); i++) {
     ItPoint box = points.get(i);
-    //fill(255);
+    //fill(255);    
+    scene.pg().stroke(255);
     if(i!=0)
-      scene.line(points.get(i-1).x,points.get(i-1).y,points.get(i).x,points.get(i).y);
+      scene.line(points.get(i-1).getX(),points.get(i-1).getY(),points.get(i).getX(),points.get(i).getY());
     box.draw(true);
   }
 }

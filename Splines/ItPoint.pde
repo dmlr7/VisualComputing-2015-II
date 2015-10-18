@@ -1,9 +1,7 @@
 public class ItPoint extends PShape{
   InteractiveFrame iFrame;
   Scene scene;
-  int x;
-  int y;
-  int z;
+  Point p;
   int c;
   PShape t;
   ItPoint(Scene scn,int a, int b, int c) {
@@ -11,9 +9,7 @@ public class ItPoint extends PShape{
     iFrame = new InteractiveFrame(scene);
     iFrame.setGrabsInputThreshold(scene.radius()/4, true);
     iFrame.setScalingSensitivity(0);
-    x=a;
-    y=b;
-    z=c;
+    p=new Point(a,b,c);
     setColor(255);
     setPosition();
     t= new PShape(SPHERE);
@@ -62,9 +58,18 @@ public class ItPoint extends PShape{
     return iFrame.position();
   }
   public void setPosition() {
-    Vec pos = scene.is3D() ? new Vec(x, y, z) 
-                           : new Vec(x,y);
+    Vec pos = scene.is3D() ? new Vec(p.x, p.y, p.z) 
+                           : new Vec(p.x,p.y);
     iFrame.setPosition(pos);
+  }
+  public float getX(){
+    return p.x;
+  }
+  public float getY(){
+    return p.y;
+  }
+  public float getZ(){
+    return p.z;
   }
 
   public void setPosition(Vec pos) {
