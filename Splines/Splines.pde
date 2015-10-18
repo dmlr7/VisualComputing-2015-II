@@ -1,76 +1,50 @@
-import java.util.*;
-String renderer = P2D;
-ArrayList<Point> points = new ArrayList<Point>();
-Point p;
-PGraphics canvas;
-boolean var,var2;
-int draw=0;
-Point line[]=new Point[4];
-void setup(){
-  size(840, 620, renderer);
-  canvas = createGraphics((int)width, (int)(height), renderer);
-  //5, 26, 5, 26, 73, 24, 73, 61
-}
-void draw(){
-  background(0);
-  //noFill();
-  //curve(5, 26, 5, 26, 73, 24, 73, 61);
-  //curve(5, 26, 73, 24, 73, 61, 15, 65);
-  fill(255);
-  for(Point p: points){
-    ellipse(p.x, p.y, 5, 5);
-  }
-  noFill();
-  drawLines();
-}
-void drawLines(){
-  int sizePoints= points.size();
-  var=true;
-  var2=true;
-  for(int i=0;i<sizePoints && var;i++){
-    if(var2){
-     try{
-      line[0]=points.get(i);
-      line[1]=points.get(i+1);
-      line[2]=points.get(i+2);
-      stroke(255);
-      if(draw==0)
-       curve(line[0].x,line[0].y, line[0].x, line[0].y, line[1].x, line[1].y, line[2].x, line[2].y);
-      if(draw==1)
-       bezier(line[0].x, line[0].y, line[0].x, line[0].y, line[1].x, line[1].y, line[2].x, line[2].y);
-      var2=false;
-     }catch(Exception e){
-      var=false;
-     }
-    }
-    try{
-      if(draw==1)
-        i+=2;
-      line[0]=points.get(i);
-      line[1]=points.get(i+1);
-      line[2]=points.get(i+2);
-      line[3]=points.get(i+3);
-      stroke(255);
-      if(draw==0)
-        curve(line[0].x, line[0].y, line[1].x, line[1].y, line[2].x, line[2].y, line[3].x, line[3].y);
-      if(draw==1)
-        bezier(line[0].x, line[0].y, line[1].x, line[1].y, line[2].x, line[2].y, line[3].x, line[3].y);
+import remixlab.bias.branch.*;
+import remixlab.bias.core.*;
+import remixlab.bias.event.*;
+import remixlab.dandelion.branch.*;
+import remixlab.dandelion.constraint.*;
+import remixlab.dandelion.core.*;
+import remixlab.dandelion.geom.*;
+import remixlab.fpstiming.*;
+import remixlab.proscene.*;
+import remixlab.util.*;
 
-    }catch(Exception e){
-      var=false;
-    }
-  }
-    
-  }
-  
-void mouseReleased() {
-  p=new Point(mouseX,mouseY,0);
-  points.add(p);
+ArrayList<ItPoint> points;
+Scene scene;
+//Choose one of P3D for a 3D scene, or P2D or JAVA2D for a 2D scene
+String renderer = P3D;
+
+void setup() {
+  size(640, 360, renderer);
+  //Scene instantiation
+  scene = new Scene(this);
+  scene.setGridVisualHint(true);
+  scene.eyeFrame().setDamping(0.5);
+  if(scene.is3D()) scene.setCameraType(Camera.Type.PERSPECTIVE);
+  scene.setRadius(200);
+  scene.showAll();
+  //println("spinning sens: " +  scene.eyeFrame().spinningSensitivity());
+  points = new ArrayList(); 
 }
-void keyPressed() {
-  if (draw == 0) {
-    draw = 1;
-  } else {
-    draw = 0;
+
+void draw() {
+  background(0);
+  for (int i = 0; i < points.size(); i++) {
+    ItPoint box = points.get(i);
+    //fill(255);
+    if(i!=0)
+      scene.line(points.get(i-1).x,points.get(i-1).y,points.get(i).x,points.get(i).y);
+    box.draw(true);
   }
+}
+public void addPoint() {
+  ItPoint iPoint = new ItPoint(scene,mouseX,mouseY,0);
+  points.add(iPoint);
+}
+
+void mouseReleased(){
+  if(key == 'x')
+    addPoint();
+  println(mouseX,mouseY);
+  key=' ';
 }
