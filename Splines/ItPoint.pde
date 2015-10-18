@@ -10,7 +10,7 @@ public class ItPoint extends PShape{
     scene = scn;    
     iFrame = new InteractiveFrame(scene);
     iFrame.setGrabsInputThreshold(scene.radius()/4, true);
-    iFrame.setWheelSensitivity(0.0);
+    iFrame.setScalingSensitivity(0);
     x=a;
     y=b;
     z=c;
@@ -61,8 +61,6 @@ public class ItPoint extends PShape{
   public Vec getPosition() {
     return iFrame.position();
   }
-
-  // sets position randomly
   public void setPosition() {
     Vec pos = scene.is3D() ? new Vec(x, y, z) 
                            : new Vec(x,y);
