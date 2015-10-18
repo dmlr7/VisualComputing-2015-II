@@ -10,9 +10,8 @@ public class ItPoint extends PShape{
     iFrame.setGrabsInputThreshold(scene.radius()/4, true);
     iFrame.setScalingSensitivity(0);
     p=new Point(a,b,c);
-    setColor(255);
+    setColor(125);
     setPosition();
-    t= new PShape(SPHERE);
     iFrame.setRotationSensitivity(0);
   }
   public void draw() {
@@ -31,18 +30,24 @@ public class ItPoint extends PShape{
 
     fill(255, 0, 0);
 
-    if (iFrame.grabsInput(scene.motionAgent()) )
+    if (iFrame.grabsInput(scene.motionAgent()))
       fill(255, 0, 0);
     else
       fill(getColor());
     scene.drawCylinder(5,5);
-    
     popStyle();
     popMatrix();
+    updatePosition();
   }
 
   public int getColor() {
     return c;
+  }
+  public void updatePosition(){
+    Vec pos=iFrame.position();
+    p.x=pos.x();
+    p.y=pos.y();
+    p.z=pos.z();
   }
 
   // sets color randomly
