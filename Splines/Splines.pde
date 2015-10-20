@@ -86,6 +86,9 @@ public void bezier3d(Point p1,Point p2,Point p3,Point p4) {
       c=zi;
     }
 }
+public void doCubic(){
+
+}
 
 public void solve(double a[], double b[], double c[], double d[], int n) {
     /*
