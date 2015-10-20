@@ -23,13 +23,14 @@ void setup() {
   scene.setRadius(100);
   scene.showAll();
   
-  objects = new Object3D[6];
-  objects[0] = new Ring(Object3D.X, 100, 10, 5, color(255, 0, 0));
-  objects[1] = new Ring(Object3D.Z, 95, 10, 5, color(0, 255, 0));
-  objects[2] = new Ring(Object3D.Y, 90, 10, 5, color(0, 0, 255));
-  objects[3] = new Drum(new Point(0, 0, 0), Object3D.Z, 10, 50, 20, color(115, 60, 200));
-  objects[4] = new Drum(new Point(0, 0, 20), Object3D.Z, 20, 30, 20, color(115, 60, 200));
-  objects[5] = new Drum(new Point(0, 0, -20), Object3D.Z, 20, 30, 20, color(115, 60, 200));
+  objects = new Object3D[7];
+  objects[0] = new Ring(Object3D.Z, 100, 5, 5, color(255, 0, 0));
+  objects[1] = new Ring(Object3D.Z, 95, 5, 5, color(0, 255, 0));
+  objects[2] = new Ring(Object3D.Z, 90, 5, 5, color(0, 0, 255));
+  objects[3] = new Drum(new Point(0, 0, 0), Object3D.X, 10, 50, 20, color(115, 60, 200));
+  objects[4] = new Drum(new Point(20, 0, 0), Object3D.X, 20, 30, 20, color(115, 60, 200));
+  objects[5] = new Drum(new Point(-20, 0, 0), Object3D.X, 20, 30, 20, color(115, 60, 200));
+  objects[6] = new Drum(new Point(0, 0, 0), Object3D.X, 10, 2, 180, color(115, 180, 100));
 }
 
 void draw(){
@@ -41,7 +42,7 @@ void draw(){
   scene.endDraw();
   canvas.endDraw();
   image(canvas, 0, 0);
-  rotateObjects(PI / 180);
+  rotateObjects(PI / 60);
 }
 
 void drawObjects(PGraphics pg) {
@@ -51,9 +52,9 @@ void drawObjects(PGraphics pg) {
 
 void rotateObjects(float angle) {
   for(int i = 0; i < objects.length; ++i)
-    objects[i].rotate(Object3D.Z, angle);
+    objects[i].rotate(Object3D.X, angle);
   for(int i = 1; i < objects.length; ++i)
     objects[i].rotate(Object3D.Y, angle);
   for(int i = 2; i < objects.length; ++i)
-    objects[i].rotate(Object3D.X, angle);
+    objects[i].rotate(Object3D.Z, angle);
 }
