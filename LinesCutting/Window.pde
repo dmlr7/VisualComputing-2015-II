@@ -28,13 +28,13 @@ public class Window {
   
   public void draw() {
     iframe.applyTransformation();
-    fill(200, 200, 0);
     drawWindow(scene.pg());
     drawDivisions(scene.pg());
   }
   
   public void drawWindow(PGraphics pg) {
     float dh = h / 2, dl = l / 2;
+    pg.fill(200, 191, 231);
     pg.beginShape();
     pg.vertex(center.x -dl, center.y - dh);
     pg.vertex(center.x -dl, center.y + dh);
@@ -63,6 +63,16 @@ public class Window {
     float dh = h / 2, dl = l / 2;
     return (p.x - dl > -borderX + 50) && (p.x + dl < borderX - 50)
         && (p.y - dh > -borderY + 50) && (p.y + dh < borderY - 50);
+  }
+  
+  public Point toWindowPoint(float x, float y) {
+    return new Point((x * 0.6429f) - borderX, (y * 0.6452f) - borderY);
+  }
+  
+  public void drawLine(Line line) {
+    line.draw(scene.pg(), color(255, 0, 0));
+    line.a.draw(scene.pg(), color(255, 0, 0));
+    line.b.draw(scene.pg(), color(255, 0, 0));
   }
   
 }
