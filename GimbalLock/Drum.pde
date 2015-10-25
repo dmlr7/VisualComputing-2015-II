@@ -57,8 +57,7 @@ class Drum extends Object3D {
   }
   
   @Override
-  public void rotate(int axis, float angle) {
-    float[][] matrix = calculateRotationMatrix(axis, angle);
+  public void rotate(float[][] matrix) {
     for(int i = 0; i < sides; ++i) {
       upperPoints[i] = rotatePoint(upperPoints[i], matrix);
       lowerPoints[i] = rotatePoint(lowerPoints[i], matrix);

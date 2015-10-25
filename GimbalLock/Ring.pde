@@ -53,8 +53,7 @@ class Ring extends Object3D {
   }
   
   @Override
-  public void rotate(int axis, float angle) {
-    float[][] matrix = calculateRotationMatrix(axis, angle);
+  public void rotate(float[][] matrix) {
     for(int i = 0; i < sides; ++i) {
       upperExteriorPoints[i] = rotatePoint(upperExteriorPoints[i], matrix);
       upperInteriorPoints[i] = rotatePoint(upperInteriorPoints[i], matrix);

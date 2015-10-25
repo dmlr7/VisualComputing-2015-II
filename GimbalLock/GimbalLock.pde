@@ -33,6 +33,8 @@ void setup() {
   objects[6] = new Drum(new Point(0, 0, 0), Object3D.X, 10, 2, 180, color(115, 180, 100));
 }
 
+float angle = 0;
+
 void draw(){
   background(0);
   canvas.beginDraw();
@@ -42,7 +44,8 @@ void draw(){
   scene.endDraw();
   canvas.endDraw();
   image(canvas, 0, 0);
-  rotateObjects(PI / 60);
+  angle += PI / 180;
+  rotateObjects(angle);
 }
 
 void drawObjects(PGraphics pg) {
@@ -50,11 +53,42 @@ void drawObjects(PGraphics pg) {
     objects[i].draw(pg);
 }
 
+float save = 0;
+
 void rotateObjects(float angle) {
-  for(int i = 0; i < objects.length; ++i)
-    objects[i].rotate(Object3D.X, angle);
-  for(int i = 1; i < objects.length; ++i)
-    objects[i].rotate(Object3D.Y, angle);
-  for(int i = 2; i < objects.length; ++i)
-    objects[i].rotate(Object3D.Z, angle);
+  float[][] matrixY = objects[0].calculateRotationMatrix(Object3D.X, angle);
+  float[][] inverseY = objects[0].calculateRotationInverse(Object3D.X, save);
+  objects[0].rotate(inverseY);
+  objects[0].rotate(matrixY);
+  
+  float[][] matrixX = objects[1].calculateRotationMatrix(Object3D.Y, angle);
+  float[][] inverseX = objects[1].calculateRotationInverse(Object3D.Y, save);
+  objects[1].rotate(inverseY);
+  objects[1].rotate(inverseX);
+  objects[1].rotate(matrixX);
+  objects[1].rotate(matrixY);
+  
+  float[][] matrixY2 = objects[1].calculateRotationMatrix(Object3D.X, angle);
+  float[][] inverseY2 = objects[1].calculateRotationInverse(Object3D.X, save);
+  for(int i = 2; i < objects.length; ++i) {
+    objects[i].rotate(inverseY);
+    objects[i].rotate(inverseX);
+    objects[i].rotate(inverseY2);
+    objects[i].rotate(matrixY2);
+    objects[i].rotate(matrixX);
+    objects[i].rotate(matrixY);
+  }
+  
+  save = angle;
+}
+
+float[][] multiply(float[][] A, float[][] B) {
+  float[][] C = new float[A.length][B[0].length];
+  for(int f = 0; f < A.length; ++f)
+    for(int c = 0; c < A[f].length; ++c) {
+      C[f][c] = 0;
+      for(int i = 0; i < B[f].length; ++i)
+        C[f][c] += A[f][i] * B[i][c];
+    }
+  return C;
 }
