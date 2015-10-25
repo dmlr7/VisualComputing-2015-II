@@ -76,6 +76,10 @@ public class ItPoint extends PShape{
   public float getZ(){
     return p.z;
   }
+  public Point getP(){
+    return p;
+  }
+
 
   public void setPosition(Vec pos) {
     iFrame.setPosition(pos);
