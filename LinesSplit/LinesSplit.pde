@@ -1,7 +1,7 @@
-//import remixlab.bias.branch.*;
+import remixlab.bias.branch.*;
 import remixlab.bias.core.*;
 import remixlab.bias.event.*;
-//import remixlab.dandelion.branch.*;
+import remixlab.dandelion.branch.*;
 import remixlab.dandelion.constraint.*;
 import remixlab.dandelion.core.*;
 import remixlab.dandelion.geom.*;
@@ -56,6 +56,7 @@ void mouseClicked() {
 boolean dinit = true;
 
 void mouseDragged() {
+  //clipping = new NoClipping();
   mouseLocation = window.toWindowPoint(mouseX, mouseY);
   cinit = true;
   if(dinit) {

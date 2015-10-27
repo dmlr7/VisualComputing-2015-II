@@ -10,7 +10,6 @@ public class Window {
   
   Window(Scene scene, float h, float l) {
     this.scene = scene;
-    iframe = new InteractiveFrame(scene, null);
     center = new Point(0, 0);
     this.l = l;
     this.h = h;
@@ -27,7 +26,6 @@ public class Window {
   }
   
   public void draw() {
-    iframe.applyTransformation();
     drawWindow(scene.pg());
     drawDivisions(scene.pg());
   }

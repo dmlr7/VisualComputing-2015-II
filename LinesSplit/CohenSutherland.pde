@@ -7,6 +7,7 @@ public class CohenSutherland implements LineClippingFunction {
   public final static int ABOVE = 1<<3;
   
   protected float xmin, xmax, ymin, ymax;
+  protected float err = 0.00001;
   
   @Override
   public Line cut(Line line, Line[] borders) {
@@ -33,13 +34,13 @@ public class CohenSutherland implements LineClippingFunction {
   
   private int computeCode(Point point) {
     int code = INSIDE;
-    if(point.x < xmin)
+    if(point.x < xmin && abs(point.x - xmin) > err)
       code |= LEFT;
-    if(point.x > xmax)
+    if(point.x > xmax && abs(point.x - xmax) > err)
       code |= RIGHT;
-    if(point.y < ymin)
+    if(point.y < ymin && abs(point.y - ymin) > err)
       code |= BELOW;
-    if(point.y > ymax)
+    if(point.y > ymax && abs(point.y - ymax) > err)
       code |= ABOVE;
     return code;
   }
