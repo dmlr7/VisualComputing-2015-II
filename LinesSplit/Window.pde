@@ -34,7 +34,7 @@ public class Window {
   
   public void drawWindow(PGraphics pg) {
     float dh = h / 2, dl = l / 2;
-    pg.fill(200, 191, 231);
+    pg.fill(120, 120, 120);
     pg.beginShape();
     pg.vertex(center.x -dl, center.y - dh);
     pg.vertex(center.x -dl, center.y + dh);
@@ -69,10 +69,16 @@ public class Window {
     return new Point((x * 0.6429f) - borderX, (y * 0.6452f) - borderY);
   }
   
-  public void drawLine(Line line) {
-    line.draw(scene.pg(), color(255, 0, 0));
-    line.a.draw(scene.pg(), color(255, 0, 0));
-    line.b.draw(scene.pg(), color(255, 0, 0));
+  public void drawLine(Line line, SplitFunction split) {
+    Line res = split.split(line, divisions);
+    res.draw(scene.pg(), color(105, 201, 224));
+    drawResidues(line, res);
+    res.a.draw(scene.pg(), color(105, 105, 255));
+    res.b.draw(scene.pg(), color(105, 105, 255));
+  }
+  
+  public void drawResidues(Line org, Line res) {
+     
   }
   
 }
