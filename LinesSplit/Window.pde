@@ -21,8 +21,8 @@ public class Window {
     float dh = h / 2, dl = l / 2;
     divisions = new Line[4];
     divisions[0] = new Line(new Point(center.x - dl, -borderY), new Point(center.x - dl, borderY));
-    divisions[1] = new Line(new Point(center.x + dl, -borderY), new Point(center.x + dl, borderY));
-    divisions[2] = new Line(new Point(-borderX, center.y - dh), new Point(borderX, center.y - dh));
+    divisions[1] = new Line(new Point(-borderX, center.y - dh), new Point(borderX, center.y - dh));
+    divisions[2] = new Line(new Point(center.x + dl, -borderY), new Point(center.x + dl, borderY));
     divisions[3] = new Line(new Point(-borderX, center.y + dh), new Point(borderX, center.y + dh));
   }
   
@@ -69,12 +69,14 @@ public class Window {
     return new Point((x * 0.6429f) - borderX, (y * 0.6452f) - borderY);
   }
   
-  public void drawLine(Line line, SplitFunction split) {
-    Line res = split.split(line, divisions);
-    res.draw(scene.pg(), color(105, 201, 224));
+  public void drawLine(Line line, LineClippingFunction clipping) {
+    Line res = clipping.cut(line.copy(), divisions);
     drawResidues(line, res);
-    res.a.draw(scene.pg(), color(105, 105, 255));
-    res.b.draw(scene.pg(), color(105, 105, 255));
+    if(res != null) {
+      res.draw(scene.pg(), color(105, 201, 224));
+      res.a.draw(scene.pg(), color(105, 105, 255));
+      res.b.draw(scene.pg(), color(105, 105, 255));
+    }
   }
   
   public void drawResidues(Line org, Line res) {

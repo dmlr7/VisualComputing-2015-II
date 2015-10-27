@@ -14,7 +14,7 @@ PGraphics canvas;
 Window window;
 Point prewMouseLocation, mouseLocation, pointDragged;
 ArrayList<Line> lines;
-SplitFunction split;
+LineClippingFunction clipping;
 
 void setup() {
   size(840, 620, JAVA2D);
@@ -27,21 +27,16 @@ void setup() {
   scene.disableMotionAgent();
   window = new Window(scene, 200, 300);
   lines = new ArrayList<Line>();
-  split = new NoSplit();
+  clipping = new NoClipping();
 }
 
 void draw() {
   background(0);
   window.draw();
   for(Line line: lines)
-    window.drawLine(line, split);
+    window.drawLine(line, clipping);
   if(!cinit)
     mouseLocation.draw(scene.pg(), color(0, 255, 0));
-  if(lines.size() > 1) {
-    Point cr = lines.get(0).cross(lines.get(1));
-    if(cr != null)
-      cr.draw(scene.pg(), color(0, 255, 0));
-  }
 }
 
 boolean cinit = true;
@@ -98,6 +93,7 @@ void mouseReleased() {
 
 void keyPressed() {
   if(key == '1')
-    split = new NoSplit();
-  print(key);
+    clipping = new NoClipping();
+  else if(key == '2')
+    clipping = new CohenSutherland();
 }
