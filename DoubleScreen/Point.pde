@@ -1,7 +1,6 @@
 public class Point {
   public float x, y;
   public final static float radius = 5;
-  
   public Point(float x, float y) {
     this.x = x;
     this.y = y;

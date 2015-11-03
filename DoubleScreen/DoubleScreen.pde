@@ -9,38 +9,62 @@ import remixlab.fpstiming.*;
 import remixlab.proscene.*;
 import remixlab.util.*;
 
-Scene scene;
-PGraphics canvas;
+Scene scene1,scene2;
+PGraphics canvas1, canvas2;
 Window window;
 Point prewMouseLocation, mouseLocation, pointDragged;
-LineClippingFunction clipping;
-Skeleton sk;
+//LineClippingFunction clipping;
+Skeleton sk1,sk2;
+//String renderer = P2D;
+// if opengl is not supported comment the prev line and uncomment this:
+String renderer = JAVA2D;
+//dim
+int w = 840;
+int h = 680;
+
 
 void setup() {
-  size(840, 620, JAVA2D);
-  canvas = createGraphics(width, height, JAVA2D);
-  scene = new Scene(this);
-  scene.setRadius(200);
-  scene.showAll();
-  scene.setGridVisualHint(false);
-  scene.setAxesVisualHint(false);
-  scene.disableMotionAgent();
-  window = new Window(scene, 200, 300);
-  clipping = new CohenSutherland();
-  sk = new Skeleton();
+  size(840, 680, renderer);
+  canvas1 = createGraphics(width*3/4, height, JAVA2D);
+  canvas2 = createGraphics(w*3/4, h, renderer);
+  scene1 = new Scene(this,canvas1);
+  scene1.showAll();
+  scene1.setGridVisualHint(false);
+  scene1.setAxesVisualHint(false);
+  scene1.disableMotionAgent();
+
+  scene2 = new Scene(this,canvas2,w*3/4,0);
+  scene2.showAll();
+  scene2.setGridVisualHint(false);
+  scene2.setAxesVisualHint(false);
+  scene2.disableMotionAgent();
+  sk1 = new Skeleton();
+  sk2 = new Skeleton();
+  
 }
 
+void draw() {
+  canvas1.beginDraw();
+  scene1.beginDraw();
+  canvas1.background(0);
+  sk1.draw(scene1.pg());
+  scene1.endDraw();
+  canvas1.endDraw();
+  
+  canvas2.beginDraw();
+  scene2.beginDraw();
+  canvas2.background(0);
+  sk2.draw(scene2.pg());
+  scene2.endDraw();
+  canvas2.endDraw();
+  
+  image(canvas1,0,0);
+  image(canvas2,w*3/4,0);
+}
+/*
 boolean cinit = true;
 
 boolean dinit = true;
-
-void draw() {
-  background(0);
-  window.draw();
-  sk.draw(window,clipping);
-  if(!cinit)
-    mouseLocation.draw(scene.pg(), color(0, 255, 0));
-}
 
 void mouseDragged() {
   //clipping = new NoClipping();
@@ -71,4 +95,4 @@ void keyPressed() {
     clipping = new NoClipping();
   else if(key == '2')
     clipping = new CohenSutherland();
-}
+}*/
