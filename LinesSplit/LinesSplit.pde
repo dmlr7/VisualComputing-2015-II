@@ -50,6 +50,7 @@ void mouseClicked() {
     cinit = true;
     lines.add(new Line(prewMouseLocation, mouseLocation));
   }
+  println(prewMouseLocation.x);
   prewMouseLocation = mouseLocation;
 }
 
