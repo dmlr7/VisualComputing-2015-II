@@ -13,7 +13,6 @@ Scene scene;
 PGraphics canvas;
 Window window;
 Point prewMouseLocation, mouseLocation, pointDragged;
-ArrayList<Line> lines;
 LineClippingFunction clipping;
 Skeleton sk;
 
@@ -27,8 +26,7 @@ void setup() {
   scene.setAxesVisualHint(false);
   scene.disableMotionAgent();
   window = new Window(scene, 200, 300);
-  lines = new ArrayList<Line>();
-  clipping = new NoClipping();
+  clipping = new CohenSutherland();
   sk = new Skeleton();
 }
 
