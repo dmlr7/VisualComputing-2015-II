@@ -1,7 +1,8 @@
 public class Skeleton {
   ArrayList<Line> lines;
-  
+  Line l;
   public Skeleton() {
+    lines=new ArrayList<Line>();
     Point p1 = new Point(0,0);
     Point p2 = new Point(0,-100);
     Point p3 = new Point(-50,-75);
@@ -14,11 +15,11 @@ public class Skeleton {
     Point p10 = new Point(65,95);
     Point p11 = new Point(50,-75);
     Point p12 = new Point(65,0);
-    Point p13 = new Point(-25,-120);
-    Point p14 = new Point(-25,-140);
-    Point p15 = new Point(0,-160);
-    Point p16 = new Point(25,-140);
-    Point p17 = new Point(25,-120);
+    Point p13 = new Point(-25,-115);
+    Point p14 = new Point(-25,-130);
+    Point p15 = new Point(0,-145);
+    Point p16 = new Point(25,-130);
+    Point p17 = new Point(25,-115);
     lines.add(new Line(p1,p2));
     lines.add(new Line(p1,p5));
     lines.add(new Line(p1,p8));

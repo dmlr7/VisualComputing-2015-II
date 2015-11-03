@@ -66,3 +66,11 @@ void mouseDragged() {
   }
   prewMouseLocation = mouseLocation;
 }
+
+
+void keyPressed() {
+  if(key == '1')
+    clipping = new NoClipping();
+  else if(key == '2')
+    clipping = new CohenSutherland();
+}
