@@ -1,6 +1,6 @@
 public class Node{
   ArrayList<Node> children;
-  ArrayList<Line> lines;
+  ArrayList<DrawableObject> dos;
   Point ref;
   
   public Node(Point a){
@@ -11,14 +11,16 @@ public class Node{
     children.add(node);
   }
   
-  public void addLine(Line line) {
-    lines.add(line);
+  public void addDrawableObject(DrawableObject dO) {
+    dos.add(dO);
   }
   
   public void draw(PGraphics pg){
     pg.pushMatrix();
-    for(Line line: lines)
-      line.draw(pg, color(105, 201, 224));
+    for(DrawableObject dO: dos){
+      if(dO.isDrawable())
+        dO.draw(pg, color(105, 201, 224));
+    }
     pg.popMatrix();
   }
   
