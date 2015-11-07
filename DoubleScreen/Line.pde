@@ -1,4 +1,4 @@
-public class Line implements DrawableObject{
+public class Line extends DrawableObject{
   
   public Point a, b;
   public float err = 0.00001;
@@ -8,7 +8,7 @@ public class Line implements DrawableObject{
     this.b = b;
     isDrawable=true;
   }
-  
+  @Override
   public void draw(PGraphics pg, color c) {
     pg.stroke(c);
     pg.line(a.x, a.y, b.x, b.y);
@@ -44,9 +44,6 @@ public class Line implements DrawableObject{
   
   public Line copy() {
     return new Line(a.copy(), b.copy());
-  }
-  public boolean isDrawable(){
-    return isDrawable;
   }
   
 }
