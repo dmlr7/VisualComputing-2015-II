@@ -1,9 +1,10 @@
-public class Node{
+public class Node extends DrawableObject{
   ArrayList<Node> children;
   ArrayList<DrawableObject> dos;
   Point ref;
   
-  public Node(Point a){
+  public Node(Scene scn,Point a){
+    super(scn);
     this.ref=a.copy();
   }
   

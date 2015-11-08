@@ -14,7 +14,9 @@ PGraphics canvas1, canvas2;
 Window window;
 Point prewMouseLocation, mouseLocation, pointDragged;
 //LineClippingFunction clipping;
-Skeleton sk1,sk2;
+DrawableObject sceneGraph;
+Mat inverseMatrix=new Mat();
+Skeleton sk1 ;
 //String renderer = P2D;
 // if opengl is not supported comment the prev line and uncomment this:
 String renderer = JAVA2D;
@@ -38,8 +40,7 @@ void setup() {
   scene2.setGridVisualHint(false);
   scene2.setAxesVisualHint(false);
   scene2.disableMotionAgent();
-  sk1 = new Skeleton();
-  sk2 = new Skeleton();
+  sk1 = new Skeleton(scene1);
   
 }
 
@@ -54,7 +55,7 @@ void draw() {
   canvas2.beginDraw();
   scene2.beginDraw();
   canvas2.background(0);
-  sk2.draw(scene2.pg());
+  //sk2.draw(scene2.pg());
   scene2.endDraw();
   canvas2.endDraw();
   

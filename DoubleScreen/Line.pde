@@ -3,7 +3,9 @@ public class Line extends DrawableObject{
   public Point a, b;
   public float err = 0.00001;
   
-  public Line(Point a, Point b) {
+  public Line(Scene scn,Point a, Point b) {
+    super(scn);
+    super.scene = scn;
     this.a = a;
     this.b = b;
     isDrawable=true;
@@ -25,11 +27,11 @@ public class Line extends DrawableObject{
     Point cr = null;
     if(this.isVerticalLine()) {
       if(!line.isVerticalLine())
-        cr = new Point(this.a.x, (m2 * this.a.x) + d);
+        cr = new Point(this.scene,this.a.x, (m2 * this.a.x) + d);
     } else if(line.isVerticalLine())
-      cr = new Point(line.a.x, (m1 * line.a.x) + c);
+      cr = new Point(this.scene,line.a.x, (m1 * line.a.x) + c);
     else
-      cr = new Point((d - c) / (m1 - m2), ((m1 * d) - (m2 * c)) / (m1 - m2));
+      cr = new Point(this.scene,(d - c) / (m1 - m2), ((m1 * d) - (m2 * c)) / (m1 - m2));
     return cr;
   }
   
@@ -43,7 +45,8 @@ public class Line extends DrawableObject{
   }
   
   public Line copy() {
-    return new Line(a.copy(), b.copy());
+    return new Line(this.
+    scene,a.copy(), b.copy());
   }
   
 }

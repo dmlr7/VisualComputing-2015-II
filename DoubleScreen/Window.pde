@@ -10,7 +10,7 @@ public class Window {
   
   Window(Scene scene, float h, float l) {
     this.scene = scene;
-    center = new Point(0, 0);
+    center = new Point(this.scene,0, 0);
     this.l = l;
     this.h = h;
     calculateDivisions();
@@ -19,10 +19,10 @@ public class Window {
   public void calculateDivisions() {
     float dh = h / 2, dl = l / 2;
     divisions = new Line[4];
-    divisions[0] = new Line(new Point(center.x - dl, -borderY), new Point(center.x - dl, borderY));
-    divisions[1] = new Line(new Point(-borderX, center.y - dh), new Point(borderX, center.y - dh));
-    divisions[2] = new Line(new Point(center.x + dl, -borderY), new Point(center.x + dl, borderY));
-    divisions[3] = new Line(new Point(-borderX, center.y + dh), new Point(borderX, center.y + dh));
+    divisions[0] = new Line(this.scene,new Point(this.scene,center.x - dl, -borderY), new Point(this.scene,center.x - dl, borderY));
+    divisions[1] = new Line(this.scene,new Point(this.scene,-borderX, center.y - dh), new Point(this.scene,borderX, center.y - dh));
+    divisions[2] = new Line(this.scene,new Point(this.scene,center.x + dl, -borderY), new Point(this.scene,center.x + dl, borderY));
+    divisions[3] = new Line(this.scene,new Point(this.scene,-borderX, center.y + dh), new Point(this.scene,borderX, center.y + dh));
   }
   
   public void draw() {
@@ -64,7 +64,7 @@ public class Window {
   }
   
   public Point toWindowPoint(float x, float y) {
-    return new Point((x * 0.6429f) - borderX, (y * 0.6452f) - borderY);
+    return new Point(this.scene,(x * 0.6429f) - borderX, (y * 0.6452f) - borderY);
   }
   
   public void drawLine(Line line, LineClippingFunction clipping) {

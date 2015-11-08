@@ -1,7 +1,8 @@
-public class Point {
+public class Point extends DrawableObject{
   public float x, y;
   public final static float radius = 5;
-  public Point(float x, float y) {
+  public Point(Scene scn,float x, float y) {
+    super(scn);
     this.x = x;
     this.y = y;
   }
@@ -28,7 +29,7 @@ public class Point {
   }
   
   public Point copy() {
-    return new Point(x, y);
+    return new Point(this.scene,x, y);
   }
   
 }
