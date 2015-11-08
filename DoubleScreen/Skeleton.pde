@@ -1,6 +1,5 @@
 public class Skeleton extends DrawableObject{
-  ArrayList<Line> lines;
-  Line l;
+  Node sk;
   float s=1.5;
   public Skeleton(Scene scn){
     super(scn);
@@ -29,7 +28,64 @@ public class Skeleton extends DrawableObject{
     Point p15 = new Point(scn,0/s,-145/s);
     Point p16 = new Point(scn,25/s,-130/s);
     Point p17 = new Point(scn,25/s,-115/s);
+    Node n=new Node(this.scene,p17);
+    n.addDrawableObject(new Line(this.scene,p17,p2));
+    Node m=new Node(this.scene,p16);
+    m.addDrawableObject(new Line(this.scene,p16,p17));
+    m.addChildren(n);
     
+    n=new Node(this.scene,p15);
+    n.addDrawableObject(new Line(this.scene,p15,p16));
+    n.addChildren(m);
+    m=new Node(this.scene,p14);
+    m.addDrawableObject(new Line(this.scene,p14,p15));
+    m.addChildren(n);
+    
+    n=new Node(this.scene,p13);
+    n.addDrawableObject(new Line(this.scene,p13,p14));
+    n.addChildren(m);
+    Node n2=new Node(this.scene,p2);
+    n2.addDrawableObject(new Line(this.scene,p2,p13));
+    n2.addChildren(n);
+    
+    m=new Node(this.scene,p4);
+    m.addDrawableObject(new Line(this.scene,p4,p3));
+    n=new Node(this.scene,p3);
+    n.addDrawableObject(new Line(this.scene,p3,p2));
+    n.addChildren(m);
+    n2.addChildren(n);
+    
+    m=new Node(this.scene,p12);
+    m.addDrawableObject(new Line(this.scene,p12,p11));
+    n=new Node(this.scene,p11);
+    n.addDrawableObject(new Line(this.scene,p11,p2));
+    n.addChildren(m);
+    n2.addChildren(n);
+    n=n2;
+    
+    n2=new Node(this.scene,p1);
+    n2.addDrawableObject(new Line(this.scene,p1,p2));
+    n2.addChildren(n);
+    
+    n=new Node(this.scene,p7);
+    n.addDrawableObject(new Line(this.scene,p7,p6));
+    m=new Node(this.scene,p6);
+    m.addDrawableObject(new Line(this.scene,p6,p5));
+    m.addChildren(n);
+    n=new Node(this.scene,p5);
+    n.addDrawableObject(new Line(this.scene,p5,p1));
+    n.addChildren(m);
+    n2.addChildren(n);
+    
+    n=new Node(this.scene,p10);
+    n.addDrawableObject(new Line(this.scene,p10,p9));
+    m=new Node(this.scene,p9);
+    m.addDrawableObject(new Line(this.scene,p9,p8));
+    m.addChildren(n);
+    n=new Node(this.scene,p8);
+    n.addDrawableObject(new Line(this.scene,p8,p1));
+    n.addChildren(m);
+    n2.addChildren(n);
     
     /*
     lines.add(new Line(p1,p2));
@@ -52,7 +108,6 @@ public class Skeleton extends DrawableObject{
   }
   
   public void draw(PGraphics pg){
-    for(Line line: lines)
-      line.draw(pg, color(105, 201, 224));
+    sk.draw(pg,color(0,102,120));
   }
 }

@@ -8,7 +8,7 @@ public class Node extends DrawableObject{
     this.ref=a.copy();
   }
   
-  public void addChild(Node node){
+  public void addChildren(Node node){
     children.add(node);
   }
   

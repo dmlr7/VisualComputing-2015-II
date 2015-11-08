@@ -19,7 +19,7 @@ public class DrawableObject {
   public boolean isDrawable(){
     return isDrawable;
   }
-  public setMobility(boolean isMobable){
+  public void setMobility(boolean isMobable){
     float s=0.0;
     if(isMobable)
       s=1.0;
@@ -31,6 +31,6 @@ public class DrawableObject {
     iFrame.setScalingSensitivity(s);
     iFrame.setTranslationSensitivity(s);
     
-    }
+  
   }
 }
