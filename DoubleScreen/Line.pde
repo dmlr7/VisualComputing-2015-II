@@ -5,7 +5,6 @@ public class Line extends DrawableObject{
   
   public Line(Scene scn,Point a, Point b) {
     super(scn);
-    super.scene = scn;
     this.a = a;
     this.b = b;
     isDrawable=true;

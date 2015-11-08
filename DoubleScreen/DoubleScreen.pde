@@ -19,15 +19,16 @@ Mat inverseMatrix=new Mat();
 Skeleton sk1 ;
 //String renderer = P2D;
 // if opengl is not supported comment the prev line and uncomment this:
-String renderer = JAVA2D;
+String renderer = P2D;
 //dim
 int w = 840;
 int h = 680;
+DrawableObject dO;
 
 
 void setup() {
   size(840, 680, renderer);
-  canvas1 = createGraphics(width*3/4, height, JAVA2D);
+  canvas1 = createGraphics(width*3/4, height, renderer);
   canvas2 = createGraphics(w*3/4, h, renderer);
   scene1 = new Scene(this,canvas1);
   scene1.showAll();
@@ -40,15 +41,17 @@ void setup() {
   scene2.setGridVisualHint(false);
   scene2.setAxesVisualHint(false);
   scene2.disableMotionAgent();
-  sk1 = new Skeleton(scene1);
-  
+  //sk1 = new Skeleton(scene1);
+  dO=new Point(scene1,0,0);
 }
 
 void draw() {
   canvas1.beginDraw();
   scene1.beginDraw();
   canvas1.background(0);
-  sk1.draw(scene1.pg());
+  //sk1.draw(scene1.pg());
+  
+  
   scene1.endDraw();
   canvas1.endDraw();
   

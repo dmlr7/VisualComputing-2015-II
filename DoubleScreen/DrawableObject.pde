@@ -4,7 +4,9 @@ public class DrawableObject {
   InteractiveFrame iFrame;
   Scene scene;
   public DrawableObject(Scene scn){
-    iFrame = new InteractiveFrame(scn);
+    scene=scn;
+    println(this.getClass().getSimpleName());
+    iFrame = new InteractiveFrame(scene);
     iFrame.setKeyboardSensitivity(0.0);
     iFrame.setWheelSensitivity(0.0);
     iFrame.setRotationSensitivity(0.0);
@@ -14,7 +16,6 @@ public class DrawableObject {
   }
   
   public void draw(PGraphics pg, color c){
-    
   }
   public boolean isDrawable(){
     return isDrawable;
