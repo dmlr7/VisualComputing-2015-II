@@ -86,7 +86,7 @@ public class Skeleton extends DrawableObject{
     n.addDrawableObject(new Line(this.scene,p8,p1));
     n.addChildren(m);
     n2.addChildren(n);
-    
+    sk=n2;
     /*
     lines.add(new Line(p1,p2));
     lines.add(new Line(p1,p5));
@@ -108,6 +108,6 @@ public class Skeleton extends DrawableObject{
   }
   
   public void draw(PGraphics pg){
-    sk.draw(pg,color(0,102,120));
+    sk.draw(pg, color(105, 201, 224));
   }
 }

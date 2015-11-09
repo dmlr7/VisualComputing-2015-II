@@ -6,6 +6,8 @@ public class Node extends DrawableObject{
   public Node(Scene scn,Point a){
     super(scn);
     this.ref=a.copy();
+    dos=new ArrayList<DrawableObject>();
+    children = new ArrayList<Node>();
   }
   
   public void addChildren(Node node){
@@ -16,11 +18,12 @@ public class Node extends DrawableObject{
     dos.add(dO);
   }
   
-  public void draw(PGraphics pg){
+  public void draw(PGraphics pg,color c){
     pg.pushMatrix();
+    ref.draw(pg, c);
     for(DrawableObject dO: dos){
       if(dO.isDrawable())
-        dO.draw(pg, color(105, 201, 224));
+        dO.draw(pg, c);
     }
     pg.popMatrix();
   }

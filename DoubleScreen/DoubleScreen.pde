@@ -41,16 +41,17 @@ void setup() {
   scene2.setGridVisualHint(false);
   scene2.setAxesVisualHint(false);
   scene2.disableMotionAgent();
-  //sk1 = new Skeleton(scene1);
+  sk1 = new Skeleton(scene1);
   dO=new Point(scene1,0,0);
+  //dO.setMobility(true);
 }
 
 void draw() {
   canvas1.beginDraw();
   scene1.beginDraw();
-  canvas1.background(0);
-  //sk1.draw(scene1.pg());
-  
+  canvas1.background(10);
+  sk1.draw(scene1.pg());
+  dO.draw(scene1.pg(),color(100,100,255));
   
   scene1.endDraw();
   canvas1.endDraw();
