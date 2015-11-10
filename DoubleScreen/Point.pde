@@ -11,6 +11,7 @@ public class Point extends DrawableObject{
     pg.stroke(c);
     pg.fill(c);
     pg.ellipse(x, y, radius, radius);
+    println(this.x,this.y);
   }
   
   public float dist(Point point) {

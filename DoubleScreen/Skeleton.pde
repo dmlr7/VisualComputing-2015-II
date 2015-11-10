@@ -9,7 +9,7 @@ public class Skeleton extends DrawableObject{
     super(scn);
     SkeletonG(a);
   }
-  public void SkeletonG(float s) {      
+  public void SkeletonG(float s) {
     Scene scn=this.scene;
     Point p1 = new Point(scn,0/s,0/s);
     Point p2 = new Point(scn,0/s,-100/s);
@@ -108,6 +108,8 @@ public class Skeleton extends DrawableObject{
   }
   
   public void draw(PGraphics pg){
+    pg.pushMatrix();
     sk.draw(pg, color(105, 201, 224));
+    pg.popMatrix();
   }
 }

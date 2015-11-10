@@ -32,7 +32,7 @@ public class Window {
   
   public void drawWindow(PGraphics pg) {
     float dh = h / 2, dl = l / 2;
-    pg.fill(120, 120, 120);
+    pg.fill(255,255,255,100);
     pg.beginShape();
     pg.vertex(center.x -dl, center.y - dh);
     pg.vertex(center.x -dl, center.y + dh);
@@ -79,6 +79,9 @@ public class Window {
   
   public void drawResidues(Line org, Line res) {
      
+  }
+  public Scene getScene(){
+    return this.scene;
   }
   
 }

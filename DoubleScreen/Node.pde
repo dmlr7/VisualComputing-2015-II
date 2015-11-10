@@ -24,7 +24,7 @@ public class Node extends DrawableObject{
   
   public void draw(PGraphics pg,color c){
     pg.pushMatrix();
-    ref.draw(pg, c);
+    //ref.draw(pg, c);
     for(DrawableObject dO: dos){
       if(dO.isDrawable())
         dO.draw(pg, c);

@@ -7,12 +7,12 @@ public class DrawableObject {
     scene=scn;
     println(this.getClass().getSimpleName());
     iFrame = new InteractiveFrame(scene);
-    iFrame.setKeyboardSensitivity(0.0);
-    iFrame.setWheelSensitivity(0.0);
-    iFrame.setRotationSensitivity(0.0);
-    iFrame.setTranslationSensitivity(0.0);
-    iFrame.setScalingSensitivity(0.0);
-    iFrame.setTranslationSensitivity(0.0);
+    //iFrame.setKeyboardSensitivity(0.0);
+    //iFrame.setWheelSensitivity(0.0);
+    //iFrame.setRotationSensitivity(0.0);
+    //iFrame.setTranslationSensitivity(0.0);
+    //iFrame.setScalingSensitivity(0.0);
+    //iFrame.setTranslationSensitivity(0.0);
   }
   
   public void draw(PGraphics pg, color c){
@@ -31,7 +31,12 @@ public class DrawableObject {
     iFrame.setTranslationSensitivity(s);
     iFrame.setScalingSensitivity(s);
     iFrame.setTranslationSensitivity(s);
-    
-  
   }
+  public InteractiveFrame getIFrame(){
+    return this.iFrame;
+  }
+  public void getPos(){
+    println(iFrame.translation());
+  }
+  
 }
