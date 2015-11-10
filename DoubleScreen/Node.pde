@@ -17,6 +17,10 @@ public class Node extends DrawableObject{
   public void addDrawableObject(DrawableObject dO) {
     dos.add(dO);
   }
+  public void setMobility(boolean mobility){
+    for(DrawableObject dO:dos)
+      dO.setMobility(mobility);
+  }
   
   public void draw(PGraphics pg,color c){
     pg.pushMatrix();
@@ -25,6 +29,8 @@ public class Node extends DrawableObject{
       if(dO.isDrawable())
         dO.draw(pg, c);
     }
+    for(Node node : children)
+      node.draw(pg,c);
     pg.popMatrix();
   }
   

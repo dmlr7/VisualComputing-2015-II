@@ -102,7 +102,7 @@ void mouseReleased() {
 void mouseWheel(MouseEvent event) {
   int inc = (event.getCount() > 0)? 1 : (event.getCount() < 0)? -1 : 0;
   int wzoom = window.getZoom() + inc;
-  if(wzoom > 4 && wzoom < 21) {
+  if(wzoom > 4 && wzoom < 50) {
     window.setZoom(window.getZoom() + inc);
     scaleHorse();
   }

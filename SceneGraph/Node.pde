@@ -26,6 +26,7 @@ public class Node {
     pg.rotate(angle);
     drawLines(pg, c);
     drawChildren(pg, c);
+    translation.draw(pg,c);
     pg.popMatrix();
   }
   

@@ -16,7 +16,7 @@ Point prewMouseLocation, mouseLocation, pointDragged;
 //LineClippingFunction clipping;
 DrawableObject sceneGraph;
 Mat inverseMatrix=new Mat();
-Skeleton sk1 ;
+Skeleton sk1 ,sk2;
 //String renderer = P2D;
 // if opengl is not supported comment the prev line and uncomment this:
 String renderer = P2D;
@@ -28,8 +28,8 @@ DrawableObject dO;
 
 void setup() {
   size(840, 680, renderer);
-  canvas1 = createGraphics(width*3/4, height, renderer);
-  canvas2 = createGraphics(w*3/4, h, renderer);
+  canvas1 = createGraphics(width, height, renderer);
+  canvas2 = createGraphics(w*3/4, h/4, renderer);
   scene1 = new Scene(this,canvas1);
   scene1.showAll();
   scene1.setGridVisualHint(false);
@@ -42,14 +42,15 @@ void setup() {
   scene2.setAxesVisualHint(false);
   scene2.disableMotionAgent();
   sk1 = new Skeleton(scene1);
+  sk2= new Skeleton(scene2);
   dO=new Point(scene1,0,0);
-  //dO.setMobility(true);
+  dO.setMobility(true);
 }
 
 void draw() {
   canvas1.beginDraw();
   scene1.beginDraw();
-  canvas1.background(10);
+  canvas1.background(50);
   sk1.draw(scene1.pg());
   dO.draw(scene1.pg(),color(100,100,255));
   
@@ -58,13 +59,13 @@ void draw() {
   
   canvas2.beginDraw();
   scene2.beginDraw();
-  canvas2.background(0);
-  //sk2.draw(scene2.pg());
+  canvas2.background(0,0);
+  sk2.draw(scene2.pg());
   scene2.endDraw();
   canvas2.endDraw();
   
   image(canvas1,0,0);
-  image(canvas2,w*3/4,0);
+  image(canvas2,w*2/4,0);
 }
 /*
 boolean cinit = true;
