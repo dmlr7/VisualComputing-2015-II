@@ -17,7 +17,7 @@ ArrayList<Line> lines;
 LineClippingFunction clipping;
 
 void setup() {
-  size(840, 620, JAVA2D);
+  size(840, 620, P2D);
   canvas = createGraphics(width, height, JAVA2D);
   scene = new Scene(this);
   scene.setRadius(200);
