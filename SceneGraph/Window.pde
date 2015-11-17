@@ -2,22 +2,33 @@ public class Window {
   
   protected int zoom;
   protected float w, h;
-  protected Point origin;
+  protected float angle;
+  protected Point center;
   
   public Window(int zoom) {
     setZoom(zoom);
-    this.origin = new Point(0, 0);
+    this.center = new Point(h/2, w/2);
+    this.angle = 0;
   }
   
   public void draw(PGraphics pg) {
     pg.fill(255, 214, 72);
     pg.stroke(0);
     pg.beginShape();
-    pg.vertex(origin.x, origin.y);
-    pg.vertex(origin.x + h, origin.y);
-    pg.vertex(origin.x + h, origin.y + w);
-    pg.vertex(origin.x, origin.y + w);  
+    for(Point vertex: calutateVertex())
+      pg.vertex(vertex.x, vertex.y);  
     pg.endShape();
+  }
+  
+  public ArrayList<Point> calutateVertex() {
+    ArrayList<Point> vertex = new ArrayList<Point>();
+    vertex.add(new Point(center.x - (h/2), center.y - (w/2)));
+    vertex.add(new Point(center.x + (h/2), center.y - (w/2)));
+    vertex.add(new Point(center.x + (h/2), center.y + (w/2)));
+    vertex.add(new Point(center.x - (h/2), center.y + (w/2)));
+    for(Point point: vertex)
+      point.rotate(angle);
+    return vertex;
   }
   
   public void setZoom(int zoom) {
@@ -38,12 +49,24 @@ public class Window {
     return zoom;
   }
   
-  public void setOrigin(Point origin) {
-    this.origin = origin;
+  public void setCenter(Point center) {
+    this.center = center;
+  }
+  
+  public Point getCenter() {
+    return center;
   }
   
   public Point getOrigin() {
-    return origin;
+    return new Point(center.x - (h/2), center.y - (w/2));
+  }
+  
+  public void setAngle(float angle) {
+    this.angle = angle;
+  }
+  
+  public float getAngle() {
+    return angle;
   }
   
 }

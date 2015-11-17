@@ -64,6 +64,7 @@ void drawZoom() {
 
 void drawBigHorse(Point translation, color c) {
   for(Line line: horsez.getLines()) {
+    line.rotate(-window.getAngle());
     line.translate(translation);
     Line dw = clipping.cut(line, borders);
     if(dw != null)
@@ -108,14 +109,14 @@ void mouseDragged() {
   if(pointDragged != null)
     pointDragged.translate(new Point(dx, dy));
   else {
-    window.setOrigin(new Point(
-      window.getOrigin().x + dx,
-      window.getOrigin().y + dy
+    window.setCenter(new Point(
+      window.getCenter().x + dx,
+      window.getCenter().y + dy
     ));
   }
   prewMouseLocation = mouseLocation;
 }
-
+  
 void mouseReleased() {
   dinit = true;
   pointDragged = null;
@@ -128,4 +129,11 @@ void mouseWheel(MouseEvent event) {
     window.setZoom(window.getZoom() + inc);
     scaleHorse();
   }
+}
+
+void keyReleased() {
+  if(keyCode == 38)
+    window.setAngle(window.getAngle() - (PI / 180));
+  if(keyCode == 40)
+    window.setAngle(window.getAngle() + (PI / 180));
 }
