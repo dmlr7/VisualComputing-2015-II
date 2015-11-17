@@ -1,6 +1,17 @@
 uniform mat4 transform;
 uniform mat3 normalMatrix;
-uniform vec3 lightNormal;
+
+
+
+uniform int lightCount;
+uniform vec4 lightPosition[8];
+uniform vec3 lightNormal[8];
+uniform vec3 lightAmbient[8];
+uniform vec3 lightDiffuse[8];
+uniform vec3 lightSpecular[8];      
+uniform vec3 lightFalloff[8];
+uniform vec2 lightSpot[8];
+
 
 attribute vec4 vertex;
 attribute vec4 color;
@@ -14,5 +25,5 @@ void main() {
   gl_Position = transform * vertex;  
   vertColor = color;
   vertNormal = normalize(normalMatrix * normal);
-  vertLightDir = -lightNormal;
+  vertLightDir = -lightNormal[0];
 }
