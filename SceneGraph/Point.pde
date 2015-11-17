@@ -23,11 +23,6 @@ public class Point {
     return abs(dist(point)) < radius;
   }
   
-  public void movePoint(float dx, float dy) {
-    x += dx;
-    y += dy;
-  }
-  
   public Point copy() {
     return new Point(x, y);
   }
@@ -35,6 +30,17 @@ public class Point {
   public void scale(float sx, float sy) {
     x *= sx;
     y *= sy;
+  }
+  
+  public void rotate(float angle) {
+    float px = x, py = y;
+    x = (px * cos(angle)) - (py * sin(angle));
+    y = (px * sin(angle)) + (py * cos(angle));
+  }
+  
+  public void translate(Point t) {
+    this.x += t.x;
+    this.y += t.y;
   }
   
 }

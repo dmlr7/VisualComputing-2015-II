@@ -36,11 +36,6 @@ public class Line {
     return abs(a.x - b.x) < 0.000001;
   }
   
-  private boolean isInside(Point point) {
-    return (min(a.x, b.x) <= point.x && point.x <= max(a.x, b.x))
-        && (min(a.y, b.y) <= point.y && point.y <= max(a.y, b.y));
-  }
-  
   public Line copy() {
     return new Line(a.copy(), b.copy());
   }
@@ -48,6 +43,16 @@ public class Line {
   public void scale(float sx, float sy) {
     a.scale(sx, sy);
     b.scale(sx, sy);
+  }
+  
+  public void rotate(float angle) {
+    a.rotate(angle);
+    b.rotate(angle);
+  }
+  
+  public void translate(Point t) {
+    a.translate(t);
+    b.translate(t);
   }
   
 }

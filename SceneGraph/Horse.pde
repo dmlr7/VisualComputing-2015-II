@@ -16,7 +16,7 @@ public class Horse {
   private void paintHorse(float size) {
     float sqe = size * sqrt(2);
     // Head
-    root = new Node(new Point(2*size, 0), QUARTER_PI);
+      root = new Node(new Point(2*size, 0), QUARTER_PI);
     paintTriangle(root, sqe);
     // Neck
     Node nd = new Node(new Point(sqe, 0), QUARTER_PI);
@@ -81,12 +81,25 @@ public class Horse {
     root.draw(pg, c);
   }
   
+  public void drawWhitRestoredLines(PGraphics pg) {
+    for(Line line: root.mergeLines())
+      line.draw(pg, c);
+  }
+  
   public void scale(float sx, float sy) {
     root.scale(sx, sy);
   }
   
   public Horse copy() {
     return new Horse(root.copy(), c);
+  }
+  
+  public ArrayList<Line> getLines() {
+    return root.mergeLines();
+  }
+  
+  public color getColor() {
+    return c;
   }
   
 }

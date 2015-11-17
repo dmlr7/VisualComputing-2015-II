@@ -26,7 +26,7 @@ public class Node {
     pg.rotate(angle);
     drawLines(pg, c);
     drawChildren(pg, c);
-    translation.draw(pg,c);
+    //translation.draw(pg,c);
     pg.popMatrix();
   }
   
@@ -55,6 +55,27 @@ public class Node {
     for(Node child: children)
       node.addChild(child.copy());
     return node;
+  }
+  
+  public ArrayList<Line> getLines() {
+    return lines;
+  }
+  
+  public ArrayList<Line> mergeLines() {
+    ArrayList<Line> result = new ArrayList<Line>();
+    for(Line line: lines)
+      result.add(apply(line));
+    for(Node node: children)
+      for(Line line: node.mergeLines())
+        result.add(apply(line));
+    return result;
+  }
+  
+  public Line apply(Line line) {
+    Line res = line.copy();
+    res.rotate(angle);
+    res.translate(translation);
+    return res;
   }
   
 }
