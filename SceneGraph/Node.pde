@@ -24,9 +24,10 @@ public class Node {
     pg.pushMatrix();
     pg.translate(translation.x, translation.y);
     pg.rotate(angle);
-    drawLines(pg, c);
+    //drawLines(pg, c);
+    translation.draw(pg,c);
+    println(translation.x,translation.y);
     drawChildren(pg, c);
-    //translation.draw(pg,c);
     pg.popMatrix();
   }
   

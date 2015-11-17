@@ -13,9 +13,12 @@ varying vec4 positionFS;
 
 void main() {
   if(option==0)
-    gl_FragColor = gl_FrontFacing ? vertColor : backVertColor;    
-  if(option==1){
+    gl_FragColor = gl_FrontFacing ? vertColor : backVertColor;
     gl_FragColor = vertColor * normalize(positionFS)*10;
+  if(option==1){
+    int si = int(vertTexCoord.s * 50.0);
+    int sj = int(vertTexCoord.t * 50.0);  
+    gl_FragColor = texture2D(texture, vec2(float(si) / 50.0, float(sj) / 50.0)) * vertColor;
   }
 }
 

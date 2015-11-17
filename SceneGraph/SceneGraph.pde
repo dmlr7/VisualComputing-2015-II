@@ -52,12 +52,18 @@ void draw() {
 void drawZoom() {
   zoom.beginDraw();
   zoom.background(color(120, 120, 120));
+  
   for(Line border: borders)
     border.draw(zoom, color(255, 255, 255));
   drawBigHorse(
     new Point((-window.getOrigin().x * sx) + 20, (-window.getOrigin().y * sy) + 20),
     horsez.getColor()
   );
+  zoom.pushMatrix();
+  zoom.translate((-window.getOrigin().x * sx) + 20, (-window.getOrigin().y * sy) + 20);
+  zoom.rotate(-window.getAngle());
+  horsez.draw(zoom);
+  zoom.popMatrix();
   zoom.endDraw();
   image(zoom, 0, 0);
 }
@@ -136,4 +142,6 @@ void keyReleased() {
     window.setAngle(window.getAngle() - (PI / 180));
   if(keyCode == 40)
     window.setAngle(window.getAngle() + (PI / 180));
+  if(key == 'r')
+    horsez.rotate(horsez.getRotation() + (PI / 90));
 }

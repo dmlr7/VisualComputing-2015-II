@@ -13,6 +13,14 @@ public class Horse {
     this.c = c;
   }
   
+  public void rotate(float angle) {
+    root.angle = angle;
+  }
+  
+  public float getRotation() {
+    return root.angle;
+  }
+  
   private void paintHorse(float size) {
     float sqe = size * sqrt(2);
     // Head
