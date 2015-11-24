@@ -1,4 +1,4 @@
-PShader toon,diffuse,assigned,light,plane;
+PShader toon,diffuse,assigned,light,plane,te;
 String shader= "";
 int shaderSelect= 2;
 float div=1;
@@ -11,13 +11,15 @@ void setup() {
   toon = loadShader("ToonFrag.glsl", "ToonVert.glsl");
   toon.set("fraction", 1.0);
   
+  te = loadShader("teFrag.glsl", "teVert.glsl");
+  
   diffuse = loadShader("DiffuseFrag.glsl", "DiffuseVert.glsl");
   light = loadShader("LightFrag.glsl", "GenericVert.glsl");
   light.set("option", 0);
   plane = loadShader("LightFrag.glsl", "GenericVert.glsl");
   plane.set("option", 1);
-  shader="toon";
-  assigned=light;
+  shader="te";
+  assigned=te;
   img=createImage(200, 200, ARGB);
   img.loadPixels();
   for (int i = 0; i < img.pixels.length; i++) {
@@ -44,7 +46,7 @@ void draw() {
   //ambient(200);
   shininess(30);
   fill(color(100,0,0));  
-  sphereDetail(300);
+  sphereDetail(100);
   //texture(img);
   sphere(250);
   //fill(color(0,100,0));
