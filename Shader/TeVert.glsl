@@ -17,15 +17,15 @@ attribute vec3 normal;
 
 varying vec4 vertColor;
 varying vec3 vertNormal;
-//varying vec3 vertLightDir[8];
+varying vec3 vertLightDir[8];
 //varying float lightCountF;
 
 void main() {
   //lightCountF=lightCount/10.0;
   gl_Position = transform * vertex;  
   vertColor = color;
-  vertNormal = normalize(normalMatrix * normal);/*
+  vertNormal = normalize(normalMatrix * normal);
   for(int i=0;i<lightCount;i++){
     vertLightDir[i] = -lightNormal[i];
-  }*/
+  }
 }
