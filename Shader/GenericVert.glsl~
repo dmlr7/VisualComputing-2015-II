@@ -67,7 +67,7 @@ void main() {
   // Normal vector in eye coordinates
   vec3 ecNormal = normalize(normalMatrix * normal);
   vec3 ecNormalInv = ecNormal * -one_float;
-  positionFS=position;
+  positionFS=gl_Position;
   // Light calculations
   vec3 totalAmbient = vec3(0, 0, 0);
   

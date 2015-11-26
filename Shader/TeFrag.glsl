@@ -3,24 +3,23 @@ precision mediump float;
 precision mediump int;
 #endif
 
-
-uniform int lightCount;
-uniform vec3 lightNormal[8];
-uniform vec4 lightPosition[8];
- 
 varying vec4 vertColor;
-varying vec3 vertNormal;
-varying vec3 vertLightDir[8];
+varying vec4 diffuse;
+varying vec4 specular;
 
-
-void main(){
-  gl_FragColor =vec4(0.0);
-  float intensity;
-  vec4 color;
-  for(int i =0;i<lightCount;i++){
-   intensity = max(0.0, dot(-lightNormal[i], vertNormal));
-   float dot_product = max(dot(normalize(-lightNormal[i]), normalize (vertNormal)), 0.0);
-   color = dot_product * vec4( 1.0, 1.0, 1.0, 1.0 );
-   gl_FragColor =gl_FragColor+( vertColor * intensity * color);
-  }
+void main() {
+  vec3 direction = normalize(lightDir);
+  vec3 normal = normalize(ecNormal);
+  float intensityDiffuse = max(0.0, dot(direction, normal));
+  float intensitySpecular = max(0.0, dot(direction, normal));
+  gl_FragColor = vec4(vec3(intensityDiffuse), 1) * vertColor;
+  
+  vec3 lR = normalize(-reflect(direction,ecNormal));
+  vec3 v = normalize(-ecVertex);
+  float intensitySpecular = max(0.0, dot(lR,v));
+  
+  diffuse=vec4(vec3(intensityDiffuse),1);
+  specular=vec4(vec3(intensitySpecular),1);
+  
+  gl_FragColor = vertColor*diffuse;//*specular;
 }
