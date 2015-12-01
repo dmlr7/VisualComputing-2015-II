@@ -15,9 +15,8 @@ void main() {
   vec3 v = normalize(-ecVertex);
   float intensitySpecular = max(0.0, dot(lR,v));    
 
-  
   vec4 diffuse=vec4(vec3(intensityDiffuse),1);
   vec4 specular=vec4(vec3(intensitySpecular),1);
-  vec4 temp = specular*diffuse;
+  vec4 temp = normalize(specular*vec4(0.5))+normalize(diffuse);
   gl_FragColor = vertColor*temp;
 }

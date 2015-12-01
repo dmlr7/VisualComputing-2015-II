@@ -1,9 +1,9 @@
-public class InteractiveTorus {
+public class InteractiveLight {
   InteractiveFrame iFrame;
   int c;
   Scene scene;
 
-  InteractiveTorus(Scene scn) {
+  InteractiveLight(Scene scn) {
     scene = scn;    
     iFrame = new InteractiveFrame(scene);
     iFrame.setGrabsInputThreshold(scene.radius()/4, true);
@@ -33,7 +33,7 @@ public class InteractiveTorus {
     else
       fill(getColor());
     
-    scene.drawTorusSolenoid();
+    scene.drawShooterTarget(new Vec(255,255,255),50);
     popStyle();
     popMatrix();
   }
@@ -57,13 +57,13 @@ public class InteractiveTorus {
 
   // sets position randomly
   public void setPosition() {
-    float low = -100;
-    float high = 100;
+    float low = 50;
+    float high = 200;
     Vec pos = scene.is3D() ? new Vec(random(low, high), random(low, high), random(low, high)) 
                            : new Vec(random(low, high), random(low, high));
     iFrame.setPosition(pos);
   }
-  
+
   public void setPosition(Vec pos) {
     iFrame.setPosition(pos);
   }

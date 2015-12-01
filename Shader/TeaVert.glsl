@@ -31,6 +31,6 @@ void main() {
   
   vec4 diffuse=vec4(vec3(intensityDiffuse),1);
   vec4 specular=vec4(vec3(intensitySpecular),1);
-  vec4 temp = specular*diffuse;
+  vec4 temp = normalize(specular)+normalize(diffuse);
   vertColor = color*temp; 
 }
