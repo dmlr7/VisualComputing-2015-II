@@ -6,18 +6,9 @@ precision mediump int;
 varying vec4 vertColor;
 varying vec3 ecVertex;
 varying vec3 ecNormal;
-varying vec3 direction;
+varying vec3 direction[8];
 
 void main() { 
-  float intensityDiffuse = max(0.0, dot(direction, ecNormal));
-  
-  vec3 lR = normalize(-reflect(direction,ecNormal));
-  vec3 v = normalize(-ecVertex);
-  float intensitySpecular = max(0.0, dot(lR,v));    
 
-  
-  vec4 diffuse=vec4(vec3(intensityDiffuse),1);
-  vec4 specular=vec4(vec3(intensitySpecular),1);
-  vec4 temp = specular*diffuse;
-  gl_FragColor = vertColor*temp;
+  gl_FragColor = vertColor;
 }

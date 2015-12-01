@@ -14,10 +14,10 @@ float angle;
 int shaderSelect= 2;
 float div=1;
 
-PShader gouround, phong,assigned;
+PShader gouround,gouround2, phong,assigned;
 Scene scene;
-InteractiveLight light;
-Vec lightPosition;
+InteractiveLight light,target;
+Vec lightPosition,targetPos,dir;
 
 void setup() {
   size(640, 360, P3D);
@@ -26,11 +26,15 @@ void setup() {
   scene.showAll();
   scene.setGridVisualHint(true);
   scene.setPickingVisualHint(true);
-  can = createCan(100, 200, 32);
+  //can = createCan(100, 200, 32);
+  can=loadShape("suzanne.obj");
   gouround = loadShader("TeaFrag.glsl", "TeaVert.glsl");
+  gouround2 = loadShader("LightFrag.glsl", "GenericVert.glsl");
   phong = loadShader("TeFrag.glsl", "TeVert.glsl");
-  assigned=phong;
+  assigned=gouround;
   light = new InteractiveLight(scene);
+  target = new InteractiveLight(scene);
+  dir= new Vec(0,0,0);
 }
 
 PShape createCan(float r, float h, int detail) {
@@ -55,11 +59,16 @@ PShape createCan(float r, float h, int detail) {
 //myshader.set("mylight",scene.eye().frame().trasnformOf() );
 void draw() {
   lightPosition = light.getPosition();
+  targetPos = target.getPosition();
   
   background(0);
-  shader(assigned);
+  shader(assigned);  
   pointLight(255,255,255, lightPosition.x(), lightPosition.y(), lightPosition.z());
-  shape(can); 
+  pointLight(255,255,255, targetPos.x(), targetPos.y(), targetPos.z());
+  specular(30);
+  scale(100);
+  shape(can);
+  scale(0.01);
   light.draw();
   angle += 0.01;
 }
@@ -74,6 +83,8 @@ void keyPressed(){
     assigned=gouround;
   if(shaderSelect==1)
     assigned=phong;
+  if(shaderSelect==2)
+    assigned=gouround2;
 }
 key=' ';
 }

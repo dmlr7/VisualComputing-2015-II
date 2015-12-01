@@ -5,7 +5,9 @@ uniform mat4 modelview;
 uniform mat4 transform;
 uniform mat3 normalMatrix;
 
-uniform vec4 lightPosition;
+uniform int lightCount;
+uniform vec4 lightPosition[8];
+
 
 attribute vec4 vertex;
 attribute vec4 color;
@@ -15,12 +17,14 @@ varying vec4 vertColor;
 varying vec3 ecVertex;
 varying vec3 ecNormal;
 varying vec3 direction;
-
+varying float index;
 void main() {
+  index = lightCount;
   gl_Position = transform * vertex;    
-  vec3 ecVertex = vec3(modelview * vertex);  
-  vec3 ecNormal = normalize(normalMatrix * normal);
-  direction = normalize(lightPosition.xyz - ecVertex);
-  vertColor = color;
+  ecVertex = vec3(modelview * vertex);  
+  ecNormal = normalize(normalMatrix * normal);
   
+  direction = normalize(lightPosition.xyz - ecVertex);
+
+  vertColor = color;  
 }
